@@ -1,21 +1,17 @@
-import Quill from 'quill'
-import {useCallback} from 'react'
-import "quill/dist/quill.snow.css"
+import Quill from "quill";
+import { useCallback } from "react";
+import "quill/dist/quill.snow.css";
+import './index.css';
+
 export default function TextEditor() {
-    const wrapperRef= useCallback((wrapper) => {
-        if (wrapper == null) return 
-        const editor =document.createElement("div")
-        wrapper.append(editor)
-       new Quill("#container",{theme:"snow"})
+  const wrapperRef = useCallback(wrapper => {
+    if (wrapper == null) return
 
+    wrapperRef.innerHTMl = "";
+    const editor = document.createElement("div");
+    wrapper.append(editor);
+    new Quill(editor, { theme: "snow" });
+  }, []);
 
-
-       return () =>{
-           wrapperRef.innerHTMl=""
-       }
-    }, [])
-       
-
-        return <div id="container" ref={wrapperRef} ></div>
-    
+  return <div className="container" ref={wrapperRef}></div>;
 }
